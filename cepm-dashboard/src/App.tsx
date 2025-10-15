@@ -143,9 +143,21 @@ const App = () => {
 
     const baseTotals = computeTotals(filteredRecords);
     const maiorTurma = filteredRecords.reduce((best, item) => {
-      if (!best || item.numeroDeFormados > best.numeroDeFormados) {
+      if (!best) {
         return item;
       }
+
+      if (item.totalIniciaram > best.totalIniciaram) {
+        return item;
+      }
+
+      if (
+        item.totalIniciaram === best.totalIniciaram &&
+        item.numeroDeFormados > best.numeroDeFormados
+      ) {
+        return item;
+      }
+
       return best;
     });
 
@@ -285,7 +297,7 @@ const App = () => {
           title="Maior turma do recorte"
           value={
             filteredTotals.maiorTurma
-              ? filteredTotals.maiorTurma.numeroDeFormados.toLocaleString('pt-BR')
+              ? filteredTotals.maiorTurma.totalIniciaram.toLocaleString('pt-BR')
               : '--'
           }
           emphasis={
@@ -295,7 +307,17 @@ const App = () => {
           }
           caption={
             showFilteredTotals
-              ? `Cidades no recorte: ${filteredTotals.cidadesAtendidas} de ${globalTotals.cidades}`
+              ? filteredTotals.maiorTurma
+                ? `Iniciaram: ${filteredTotals.maiorTurma.totalIniciaram.toLocaleString(
+                    'pt-BR',
+                  )} • Concluíram: ${filteredTotals.maiorTurma.numeroDeFormados.toLocaleString(
+                    'pt-BR',
+                  )} (${filteredTotals.maiorTurma.totalConcluintesPmce.toLocaleString(
+                    'pt-BR',
+                  )} PMCE, ${filteredTotals.maiorTurma.totalConcluintesOutrasForcas.toLocaleString(
+                    'pt-BR',
+                  )} outras) • Cidades no recorte: ${filteredTotals.cidadesAtendidas} de ${globalTotals.cidades}`
+                : 'Sem dados para determinar a maior turma'
               : 'Selecione um recorte para ver detalhes'
           }
         />
