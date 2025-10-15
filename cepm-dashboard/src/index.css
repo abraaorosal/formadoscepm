@@ -1,0 +1,25 @@
+:root {
+  font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  color: #0f1f4b;
+  background-color: #f4f6fd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, rgba(31, 61, 133, 0.18), transparent 55%),
+    linear-gradient(180deg, #f9faff 0%, #f4f6fd 100%);
+}
+
+a {
+  color: inherit;
+}
+
+input,
+select {
+  font: inherit;
+}
