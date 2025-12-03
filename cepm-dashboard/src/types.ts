@@ -54,3 +54,11 @@ export interface YearlyAggregate {
   totalConcluintesPmce: number;
   totalConcluintesOutrasForcas: number;
 }
+
+export interface CommanderAggregate {
+  comandante: string;
+  turmas: number;
+  totalFormados: number;
+  totalIniciaram: number;
+  totalConcluintesOutrasForcas: number;
+}
